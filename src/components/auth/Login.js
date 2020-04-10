@@ -1,7 +1,54 @@
 import React from 'react';
 
-export default function Login () {
-    return ( 
-        <h1>Login</h1>
-    )
+class Login extends React.Component {
+
+    state = {
+        username: '',
+        password: ''
+    }
+
+    handleChange = (event) => {
+        this.setState({
+          [event.target.name]: event.target.value
+        })
+    }
+    
+    handleSubmit = (e) => {
+        e.preventDefault();
+        let user = {
+          username: this.state.username,
+          password: this.state.password
+        }
+        this.props.login(user);
+    }
+
+    render() { 
+        return ( 
+            <div className="login">
+            <form onSubmit={this.handleSubmit}>
+              <label>Username: 
+                <input
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}>
+                </input>
+              </label>
+              <br />
+              <label>Password: 
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}>
+                </input>
+              </label>
+              <br />
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        )
+    }
 };
+
+export default Login;

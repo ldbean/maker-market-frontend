@@ -7,7 +7,7 @@ function Navbar (props) {
             {(props.user) ?
                 <div>
                     <button>{props.user}</button>
-                    <button onclick={props.logout}>Logout</button>
+                    <button onClick={props.logout}>Logout</button>
                 </div>
                 :
                 <div>
