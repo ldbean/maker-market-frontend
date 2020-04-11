@@ -49,7 +49,7 @@ class PostContainer extends React.Component {
         console.log(posts)
 
         return(
-            <Container maxWidth='md' className='container'>
+            <Container maxWidth="lg" className='container'>
                 {posts && posts.map(post => {
                     return <Post post={post} key={post._id} handleEdit={this.handleEdit} handleDelete={this.handDelete} />
                 })}
