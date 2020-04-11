@@ -1,8 +1,9 @@
 import React from 'react';
+import './Footer.css';
 
 function Footer () {
     return (
-        <footer>
+        <footer position="fixed">
             <p>&copy; 2020 Maker Market</p>
         </footer>
     )

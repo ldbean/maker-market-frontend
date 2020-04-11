@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button, TextField} from '@material-ui/core';
 
 class Login extends React.Component {
 
@@ -26,25 +27,23 @@ class Login extends React.Component {
         return ( 
             <div className="login">
             <form onSubmit={this.handleSubmit}>
-              <label>Username: 
-                <input
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleChange}>
-                </input>
-              </label>
+                <TextField
+                    label="Username"
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}>
+                </TextField>
               <br />
-              <label>Password: 
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}>
-                </input>
-              </label>
+                <TextField
+                    label="Password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}>
+                </TextField>
               <br />
-              <button type="submit">Login</button>
+              <Button type="submit">Login</Button>
             </form>
           </div>
         )
