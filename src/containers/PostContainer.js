@@ -1,7 +1,8 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Post from '../components/Post/Post'
-
+import postAPI from '../api/PostApi';
+import Post from '../components/Post/Post';
+import Container from '@material-ui/core/Container';
+import './PostContainer.css';
 
 class PostContainer extends React.Component {
 
@@ -9,11 +10,57 @@ class PostContainer extends React.Component {
         posts: []
     }
 
+    handleEdit = (post) => { 
+        postAPI.update(post)
+        .then(res => {
+            let posts = this.state.posts;
+            let postToEdit = posts.findIndex(post => post._id === res.data._id);
+            posts[postToEdit] = res.data;
+            this.setState({
+                posts
+            })
+        })
+    }
+
+    handDelete = (id) => {
+        postAPI.deletePost(id)
+        .then(res => {
+            let posts = this.state.posts.filter(post => post._id !== id);
+            this.setState({
+                posts
+            })
+        })
+    }
+
+    componentDidMount() {
+        postAPI.index()
+        .then(res => {
+            if (res.status === 200) {
+                this.setState({
+                    posts: res.data
+                })
+            }
+        })
+        .catch(err => console.log(err));
+    }
+
     render () {
+        let posts = this.state.posts;
+        console.log(posts)
+
         return(
-            <Grid >
-                {posts}
-            </Grid >
+            <Container maxWidth='md' className='container'>
+                {posts && posts.map(post => {
+                    return <Post post={post} key={post._id} handleEdit={this.handleEdit} handleDelete={this.handDelete} />
+                })}
+                {!posts && 
+                    <>
+                        <h3>No Posts Here.</h3>
+                    </>                
+                }
+            </Container >
         )
     }
 }
+
+export default PostContainer;

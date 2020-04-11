@@ -5,13 +5,20 @@ nav {
     display: flex;
     justify-content: space-between;
     color: blue;
-    background-color: rgb(79, 136, 137);
+    /* background-color: rgb(79, 136, 137); */
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgb(15, 49, 133) 0%, rgb(9, 62, 142) 35%, rgb(4, 132, 157) 100%); 
+    padding: 5px 0;
+  
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: rgb(151, 201, 189) !important;
+    line-height: normal;
 }
-#logo {
 
+#logo {
+    font-size: 20px;
+    font-family: 'Roboto';
 }

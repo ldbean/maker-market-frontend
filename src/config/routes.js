@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import Home from '../components/Home';
 import Register from '../components/auth/Register';
 import Login from '../components/auth/Login';
+import PostContainer from '../containers/PostContainer';
 
 const Routes = (props) => {
     return (
@@ -14,7 +15,7 @@ const Routes = (props) => {
             <Route
                 path='/posts'
                 render={() => props.user ?
-                  <h2>Posts</h2>
+                  <PostContainer/>
                 :
                   <Redirect to="/login" />
                 }

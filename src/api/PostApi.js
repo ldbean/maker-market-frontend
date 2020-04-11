@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endpoint = 'http://localhost:4001/api/v1/posts';
+const endpoint = 'http://localhost:4000/api/v1/posts';
 
 const index = () => {
   return axios.get(endpoint)
@@ -8,7 +8,7 @@ const index = () => {
     .catch(err => console.log(err));
 }
 
-const update = (doggo) => {
+const update = (post) => {
   return axios.put(`${endpoint}/${post._id}`, post)
     .then(res => res)
     .catch(err => console.log(err));
@@ -16,7 +16,7 @@ const update = (doggo) => {
 
 const deletePost = (id) => {
   return axios.delete(`${endpoint}/${id}`)
-    .then(res => res)
+    .then(res => res.json)
     .catch(err => console.log(err));
 }
 
