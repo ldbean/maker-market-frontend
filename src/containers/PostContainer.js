@@ -46,19 +46,22 @@ class PostContainer extends React.Component {
 
     render () {
         let posts = this.state.posts;
-        console.log(posts)
-
         return(
-            <Container maxWidth="lg" className='container'>
+            <div className="post-container">
                 {posts && posts.map(post => {
-                    return <Post post={post} key={post._id} handleEdit={this.handleEdit} handleDelete={this.handDelete} />
+                    return <Post 
+                        post={post} key={post._id} 
+                        handleEdit={this.handleEdit} 
+                        handleDelete={this.handDelete} 
+                        user={this.props.user}
+                    />
                 })}
                 {!posts && 
                     <>
                         <h3>No Posts Here.</h3>
                     </>                
                 }
-            </Container >
+            </div >
         )
     }
 }

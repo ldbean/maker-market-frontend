@@ -1,10 +1,11 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 
 function Home () {
     return(
-        <main className="Home">
-            <h1>home</h1>
-        </main>
+        <Container className="Home">
+            <h1>Welcome to Maker Market</h1>
+        </Container>
     )
 };
 

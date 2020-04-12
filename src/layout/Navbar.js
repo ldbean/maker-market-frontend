@@ -10,7 +10,7 @@ function Navbar (props) {
             <Button id="logo"><Link to="/" >Maker Market</Link></Button>
             {(props.user) ?
                 <div>
-                    <Button>{props.user}</Button>
+                    <Button href="/profile">{props.user}</Button>
                     <Button onClick={props.logout}>Logout</Button>
                 </div>
                 :

@@ -52,11 +52,12 @@ class Post extends React.Component {
 
     render() {
         return(
-            <Card class="post">
+            <Card className="post">
                 {
                     this.state.isEditing &&
                     <>
-                        <form onSubmit={this.submitEdit}>
+                        <form className="edit-form"
+                         onSubmit={this.submitEdit}>
                             <TextField
                                 label="Title"
                                 type="text"
@@ -82,15 +83,14 @@ class Post extends React.Component {
                 !this.state.isEditing && 
                 <>
                     <CardHeader
+                        className="post-header"
                         avatar={
                         <Avatar aria-label="recipe" className="avatar">
-                            R
+                            L
                         </Avatar>
                         }
                         action={
                         <IconButton aria-label="settings">
-                            {/* <Button onClick={this.handleEdit}>Edit</Button>
-                            <Button onClick={() => this.props.handleDelete(this.props.post._id)}>Delete</Button> */}
                             <PostMenu handleEdit={this.handleEdit} handleDelete={this.props.handleDelete} post={this.props.post}/>
                         </IconButton>
                         }

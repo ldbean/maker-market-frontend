@@ -1,11 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 export default function PostMenu(props) {
-    console.log(props)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -28,9 +26,7 @@ const handleEdit = () => {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        <MoreVertIcon />
-      </Button>
+        <MoreVertIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
