@@ -22,10 +22,6 @@ function NewPostDialogue (props) {
     setOpen(false);
   };
 
-  // const handleSubmit = (event) => {
-  //   setTitle(title.value)
-  //   setContent(content.value)
-  // }
   const handleContent = (event) => {
     setContent(event.target.value)
   }
@@ -69,7 +65,6 @@ function NewPostDialogue (props) {
               type="text" 
               placeholder="Enter title" 
               name="title" 
-              value={postTitle}
               onChange={handleTitle}
             />
             <br/>
@@ -78,7 +73,6 @@ function NewPostDialogue (props) {
               type="text" 
               placeholder="Enter post content" 
               name="content" 
-              value={postContent}
               onChange={handleContent}
             />
         </DialogContent>
