@@ -73,6 +73,7 @@ class Post extends React.Component {
                                 value={this.state.content}
                                 onChange={this.handleChange}>
                             </TextField>
+                            
                             <br/>
                             <Button onClick={this.handleEdit}>Cancel</Button>
                             <Button type="submit">Done</Button>
