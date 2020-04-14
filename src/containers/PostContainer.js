@@ -17,7 +17,8 @@ class PostContainer extends React.Component {
     }
 
     handleEdit = (post) => { 
-        postAPI.update(post)
+        console.log(post)
+        postAPI.update(post, this.props.user)
         .then(res => {
             let posts = this.state.posts;
             let postToEdit = posts.findIndex(post => post._id === res.data._id);
@@ -29,7 +30,7 @@ class PostContainer extends React.Component {
     }
 
     handDelete = (id) => {
-        postAPI.deletePost(id)
+        postAPI.deletePost(id, this.props.user)
         .then(res => {
             let posts = this.state.posts.filter(post => post._id !== id);
             this.setState({
@@ -54,13 +55,16 @@ class PostContainer extends React.Component {
         let posts = this.state.posts;
         return(
             <div className="post-container">
-                <NewPostDialogue user={this.props.user} handleAddPost={this.handleAddPost}/>
+                <NewPostDialogue 
+                    user={this.props.user} 
+                    handleAddPost={this.handleAddPost}
+                />
                 {posts && posts.map(post => {
                     return <Post 
                         post={post} key={post._id} 
                         handleEdit={this.handleEdit} 
                         handleDelete={this.handDelete} 
-                        user={this.props.user}
+                        author={post.authorId}
                     />
                 })}
                 {!posts && 

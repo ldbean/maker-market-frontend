@@ -33,10 +33,10 @@ function NewPostDialogue (props) {
   const addPost = () => {
     let title = document.querySelector('#postTitle')
     let content = document.querySelector('#postContent')
-    axios.post('http://localhost:4000/api/v1/posts', {
+    axios.post(`http://localhost:4000/api/v1/${props.user}/posts`, {
       title: postTitle,
       content: postContent,
-      // authorId: props.authorId,
+      authorId: props.user,
     })
     .then((res) => {
       console.log(res.data);

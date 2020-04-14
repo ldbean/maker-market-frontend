@@ -86,16 +86,14 @@ class Post extends React.Component {
                     <CardHeader
                         className="post-header"
                         avatar={
-                        <Avatar aria-label="recipe" className="avatar">
-                            L
-                        </Avatar>
+                        <Avatar aria-label="recipe" className="avatar"></Avatar>
                         }
                         action={
                         <IconButton aria-label="settings">
                             <PostMenu handleEdit={this.handleEdit} handleDelete={this.props.handleDelete} post={this.props.post}/>
                         </IconButton>
                         }
-                        title="[USERNAME]"
+                        title={this.props.author}
                         subheader="September 14, 2016"
                     />
                     <CardMedia

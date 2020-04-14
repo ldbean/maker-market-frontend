@@ -14,7 +14,7 @@ class Profile extends React.Component {
         return(
             <Container maxWidth="xl">
                 <ProfileCard user={this.props.user}/>
-                <PostContainer/>
+                <PostContainer user={this.props.user}/>
             </Container>
         );
     };
