@@ -7,7 +7,7 @@ import './Navbar.css';
 function Navbar (props) {
     return(
         <nav>
-            <Button id="logo"><Link to="/" >Maker Market</Link></Button>
+            <Button><Link id="logo" to="/" >MakerMarket</Link></Button>
             {(props.user) ?
                 <div>
                     <Button href="/profile">{props.user}</Button>

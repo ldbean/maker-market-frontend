@@ -1,13 +1,35 @@
 import React from 'react';
 import postAPI from '../api/PostApi';
+import userAPI from '../api/UserApi';
 import Post from '../components/Post/Post';
 import NewPostDialogue from '../components/Post/NewPostDialogue';
 import './PostContainer.css';
 
 class PostContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: [],
+        }
+    }
 
-    state = {
-        posts: []
+    // componentDidMount() {
+    //     // if(this.props.posts !== nextProps.posts){
+    //        this.getPosts();
+    // }
+
+    getPosts = () => {
+        console.log("the user is: ", this.props.user)
+        userAPI.show(this.props.user)
+        .then(res => {
+            console.log(res)
+            if (res.status === 200) {
+                this.setState({
+                    posts: res.data[0].posts
+                })
+            }
+        })
+        .catch(err => console.log(err));
     }
     
     handleAddPost = (post) => {
@@ -37,21 +59,23 @@ class PostContainer extends React.Component {
             })
         })
     }
-
-    componentDidMount() {
-        postAPI.index()
-        .then(res => {
-            if (res.status === 200) {
-                this.setState({
-                    posts: res.data
-                })
-            }
-        })
-        .catch(err => console.log(err));
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.user!==prevState.user){
+          return { user: nextProps.user};
+       }
+       else return null;
+     }
+     
+    componentDidUpdate(prevProps) {
+       if(prevProps.user!==this.props.user){
+            this.setState({user: this.props.user});
+            this.getPosts();
+       }
     }
-
+  
     render () {
         let posts = this.state.posts;
+        console.log("the user in state: ", this.props.user)
         return(
             <div className="post-container">
                 <NewPostDialogue 
@@ -64,6 +88,7 @@ class PostContainer extends React.Component {
                         handleEdit={this.handleEdit} 
                         handleDelete={this.handDelete} 
                         author={post.authorId}
+                        user={this.props.user}
                     />
                 })}
                 {!posts && 

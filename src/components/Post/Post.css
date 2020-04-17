@@ -1,6 +1,5 @@
 .post {
-    width: 300px;
-    max-height: 300px;
+    max-width: 375px;
     display: inline-block;
     background-color: rgb(152, 152, 152);
     margin: 5px;
@@ -11,3 +10,8 @@
     background-color: rgb(114, 114, 114);
 }
 
+.media {
+    height: 0;
+    padding-top: 56.25%; /*16:9, */
+    margin-top: 30;
+  }

@@ -6,13 +6,16 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import UploadImage from './UploadImage';
 import axios from 'axios';
 
 function NewPostDialogue (props) { 
 
   const [open, setOpen] = React.useState(false);
-  const [postTitle, setTitle] = React.useState('')
-  const [postContent, setContent] = React.useState('')
+  const [postTitle, setTitle] = React.useState('');
+  const [postContent, setContent] = React.useState('');
+  const [postImg, setImg] = React.useState('');
+  
 
   const handleOpen = () => {
     setOpen(true);
@@ -26,16 +29,19 @@ function NewPostDialogue (props) {
     setContent(event.target.value)
   }
 
+  const handleImage = (event) => {
+    setImg(event.target.value)
+  }
+
   const handleTitle = (event) => {
     setTitle(event.target.value)
   }
 
   const addPost = () => {
-    let title = document.querySelector('#postTitle')
-    let content = document.querySelector('#postContent')
     axios.post(`http://localhost:4000/api/v1/${props.user}/posts`, {
       title: postTitle,
       content: postContent,
+      image: postImg,
       authorId: props.user,
     })
     .then((res) => {
@@ -48,10 +54,30 @@ function NewPostDialogue (props) {
     .catch((err) => {console.log(err)})
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append('postImg', postImg);
+    const config = {
+      headers: {
+          'content-type': 'multipart/form-data'
+      }
+    };
+    axios.post("http://localhost:4000/api/v1/uploads", formData, config)
+      .then((res) => {
+        console.log(res)
+    }).catch((error) => {})
+  }
+
+  const onFileChange = (e) => {
+    console.log(e.target.files[0])
+    setImg(e.target.files[0].name)
+  }
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleOpen}>
-        Open form dialog
+        Create a New Post
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create a Post</DialogTitle>
@@ -68,6 +94,25 @@ function NewPostDialogue (props) {
               onChange={handleTitle}
             />
             <br/>
+          {/* TODO move to a new component*/}
+            <div className="container" id="postImg" name="image">
+                <div className="row">
+                    <form onSubmit={onSubmit}>
+                        <div className="form-group">
+                            <input type="file" onChange={onFileChange} />
+                        </div>
+                        <div className="form-group">
+                            <Button className="button" type="submit">Upload</Button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {/* <UploadImage
+              id="postImage"
+              name="image"
+              onChange={handleImage}
+            /> */}
             <TextField
               id="postContent"
               type="text" 

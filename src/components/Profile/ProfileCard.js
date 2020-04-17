@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Chip, Avatar, Container, Card, Button, ButtonGroup, CardContent } from '@material-ui/core';
+import { Typography, Chip, Card, Button, ButtonGroup } from '@material-ui/core';
 import './Profile.css'
 
 class ProfileCard extends React.Component {
@@ -11,7 +11,6 @@ class ProfileCard extends React.Component {
     render() {
         return (
             <Card className="profile" >
-                {/* <CardContent className="content"> */}
                     <div className="aside details"> 
                         <img className="profile-photo" alt={this.props.user} src="http://placekitten.com/200/200"/>
                         <br/>
@@ -33,7 +32,6 @@ class ProfileCard extends React.Component {
                     <div className="main">
                         <Button color="primary">Follow</Button>
                     </div>
-                {/* </CardContent> */}
                 <ButtonGroup 
                 className="controls"
                 variant="contained" 

@@ -13,11 +13,12 @@ nav {
 
 a {
     text-decoration: none;
-    color: rgb(151, 201, 189) !important;
+    color: lightcyan !important;
     line-height: normal;
 }
 
 #logo {
     font-size: 20px;
-    font-family: 'Roboto';
+    font-family: 'Amaranth', sans-serif;
+    font-variant-caps: petite-caps !important;
 }
