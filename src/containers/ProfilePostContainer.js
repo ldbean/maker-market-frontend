@@ -2,6 +2,7 @@ import React from 'react';
 import postAPI from '../api/PostApi';
 import userAPI from '../api/UserApi';
 import Post from '../components/Post/Post';
+import UploadImage from '../components/Post/UploadImage'
 import NewPostDialogue from '../components/Post/NewPostDialogue';
 import './PostContainer.css';
 

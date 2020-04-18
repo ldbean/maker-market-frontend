@@ -47,6 +47,7 @@ class Post extends React.Component {
     }
 
     render() {
+        console.log(`${process.env.PUBLIC_URL}/uploads/${this.props.post.image}`)
         return(
             <Card className="post">
                 {
@@ -81,7 +82,7 @@ class Post extends React.Component {
                 <>
                     <CardMedia
                         className="media"
-                        image={`/public/${this.props.post.image}`}
+                        image={`http://localhost:4000/static/uploads/${this.props.post.image}`}
                         title="Paella dish"
                     />
                     {/* <CardActions disableSpacing>

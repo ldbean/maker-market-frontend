@@ -41,7 +41,7 @@ function NewPostDialogue (props) {
     axios.post(`http://localhost:4000/api/v1/${props.user}/posts`, {
       title: postTitle,
       content: postContent,
-      image: postImg,
+      image: postImg.name,
       authorId: props.user,
     })
     .then((res) => {
@@ -54,7 +54,8 @@ function NewPostDialogue (props) {
     .catch((err) => {console.log(err)})
   }
 
-  const onSubmit = (e) => {
+  let onFormSubmit = (e) => {
+    console.log("form submitted -------")
     e.preventDefault()
     const formData = new FormData();
     formData.append('postImg', postImg);
@@ -63,16 +64,20 @@ function NewPostDialogue (props) {
           'content-type': 'multipart/form-data'
       }
     };
-    axios.post("http://localhost:4000/api/v1/uploads", formData, config)
+    axios.post("http://localhost:4000/api/v1/upload", formData, config)
       .then((res) => {
         console.log(res)
-    }).catch((error) => {})
+    })
   }
 
-  const onFileChange = (e) => {
+  let onFileChange = (e) => {
+    console.log("file changed -------")
     console.log(e.target.files[0])
-    setImg(e.target.files[0].name)
+    setImg(e.target.files[0])
   }
+
+  onFormSubmit = onFormSubmit.bind(NewPostDialogue);
+  onFileChange = onFileChange.bind(NewPostDialogue);
 
   return (
     <div>
@@ -97,13 +102,9 @@ function NewPostDialogue (props) {
           {/* TODO move to a new component*/}
             <div className="container" id="postImg" name="image">
                 <div className="row">
-                    <form onSubmit={onSubmit}>
-                        <div className="form-group">
-                            <input type="file" onChange={onFileChange} />
-                        </div>
-                        <div className="form-group">
-                            <Button className="button" type="submit">Upload</Button>
-                        </div>
+                    <form onSubmit={onFormSubmit}>
+                          <input type="file" onChange={onFileChange} />
+                          <button className="button" type="submit">Upload</button>
                     </form>
                 </div>
             </div>
