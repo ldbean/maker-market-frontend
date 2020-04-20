@@ -13,11 +13,7 @@
 }
 
 .details {
-   background-color: rgb(50, 50, 50);
-}
-
-.main{
-
+   background-color: rgb(87, 88, 106);
 }
 
 .controls {
@@ -67,3 +63,7 @@
         max-width: 200px;
     }
   }
+
+#add-post-button {
+    margin: 15px;
+}

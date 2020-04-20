@@ -81,9 +81,11 @@ function NewPostDialogue (props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleOpen}>
-        Create a New Post
-      </Button>
+      <div id="add-post-button">
+        <Button variant="contained" color="secondary" onClick={handleOpen}>
+          Create a New Post
+        </Button>
+      </div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create a Post</DialogTitle>
         <DialogContent>

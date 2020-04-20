@@ -26,9 +26,8 @@ class Profile extends React.Component {
             // console.log(res.data[0].tagline)
             if (res.status === 200) {
                 this.setState({
-                    user: res.data[0].user,
-                    image: res.data[0].image,
-                    tagline: res.data[0].tagline,
+                    image: res.data.image,
+                    tagline: res.data.tagline,
                 })
             }
         })

@@ -15,7 +15,7 @@ class ProfileCard extends React.Component {
                     <div className="aside details"> 
                         <img className="profile-photo" alt={this.props.user} src={API_URL + "static/uploads" + this.props.image}/>
                         <br/>
-                        <Typography className="name" variant="overline">
+                        <Typography className="name" variant="h4">
                             {this.props.user}
                         </Typography>
                     </div>

@@ -21,7 +21,6 @@ const update = (username, updatedUser) => {
   return axios.put(`${endpoint}/${username}`, updatedUser)
   .then(res => res)
   .catch(err => console.log(err));
-
 }
 
 export default {

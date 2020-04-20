@@ -14,16 +14,15 @@ class ProfilePostContainer extends React.Component {
         }
     }
 
-    getUser = () => {
+    getPosts = () => {
         console.log("the user is: ", this.props.user)
-        userAPI.show(this.props.user)
+        postAPI.show(this.props.user)
         .then(res => {
-            console.log(`res: ${res.data}`)
-            // if (res.status === 200) {
+            if (res.status === 200) {
                 this.setState({
-                    posts: res.posts
+                    posts: res.data
                 })
-            // }
+            }
         })
         .catch(err => console.log(err));
     }
@@ -69,7 +68,7 @@ class ProfilePostContainer extends React.Component {
     componentDidUpdate(prevProps) {
        if(prevProps.user!==this.props.user){
             this.setState({user: this.props.user});
-            this.forceUpdate()
+            this.getPosts()
        }  
     }
   
