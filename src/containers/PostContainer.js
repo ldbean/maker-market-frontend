@@ -28,8 +28,8 @@ class PostContainer extends React.Component {
         })
     }
 
-    handDelete = (id) => {
-        postAPI.deletePost(id, this.props.user)
+    handleDelete = (id) => {
+        postAPI.deletePost(id, this.props.username)
         .then(res => {
             let posts = this.state.posts.filter(post => post._id !== id);
             this.setState({
@@ -54,16 +54,18 @@ class PostContainer extends React.Component {
         let posts = this.state.posts;
         return(
             <div className="post-container">
-                <NewPostDialogue 
+                {/* <NewPostDialogue 
                     user={this.props.user} 
                     handleAddPost={this.handleAddPost}
-                />
+                /> */}
                 {posts && posts.map(post => {
                     return <Post 
                         post={post} key={post._id} 
                         handleEdit={this.handleEdit} 
-                        handleDelete={this.handDelete} 
+                        handleDelete={this.handleDelete} 
                         author={post.authorId}
+                        user={this.props.user}
+                        image={this.props.image}
                     />
                 })}
                 {!posts && 

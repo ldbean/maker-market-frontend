@@ -15,6 +15,7 @@ export default function PostMenu(props) {
   };
 
   const handleDelete = () => {
+    console.log(props.post._id)
     props.handleDelete(props.post._id);
     handleClose();
   }

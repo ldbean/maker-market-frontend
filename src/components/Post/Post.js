@@ -1,25 +1,40 @@
 import React from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { API_URL } from '../../Constants'
+import { Button, TextField, Paper } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 // import CardActions from '@material-ui/core/CardActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import Modal from '@material-ui/core/Modal';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import ShareIcon from '@material-ui/icons/Share';
-import "./Post.css"
+import "./Post.css";
+import PostDetail from './PostDetail/PostDetail';
 import PostMenu from './PostMenu/PostMenu';
 import moment from 'moment';
 
 class Post extends React.Component {
     state = {
         isEditing: false,
-        title: '',
-        content: ''
+        title: this.props.title,
+        content: this.props.content,
+        open: false,
+
     }
+   
+    handleOpen = () => {
+        this.setState({open:true});
+    };
+    
+    handleClose = () => {
+        this.setState({open:false});
+    };
 
     handleEdit = () => {
         this.setState({
@@ -47,12 +62,11 @@ class Post extends React.Component {
     }
 
     render() {
-        console.log(`${process.env.PUBLIC_URL}/uploads/${this.props.post.image}`)
         return(
             <Card className="post">
                 {
                     this.state.isEditing &&
-                    <>
+                    <Paper>
                         <form className="edit-form"
                          onSubmit={this.submitEdit}>
                             <TextField
@@ -75,38 +89,46 @@ class Post extends React.Component {
                             <Button onClick={this.handleEdit}>Cancel</Button>
                             <Button type="submit">Done</Button>
                         </form>
-                    </>
+                    </Paper>
                 }
                 { 
                 !this.state.isEditing && 
                 <>
-                    <CardMedia
-                        className="media"
-                        image={`http://localhost:4000/static/uploads/${this.props.post.image}`}
-                        title="Paella dish"
-                    />
-                    {/* <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                        <ShareIcon />
-                        </IconButton>
-                    </CardActions> */}
+                        <CardMedia
+                            onClick={this.handleOpen}
+                            className="media"
+                            image={`http://localhost:4000/static/uploads/${this.props.post.image}`}
+                            title={this.state.title}
+                        />
+                    {/* <button type="button" onClick={this.handleOpen}>
+                        Open Modal
+                        </button> */}
+                    <Modal
+                        disableEnforceFocus
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                    >
+                        <DialogContent>
+                            <PostDetail
+                                post={this.props.post}
+                                user={this.props.user}
+                                image={this.props.image}
+                            />
+                        </DialogContent>
+                    </Modal>
                     <CardContent>
-                        <Typography>
+                        {/* <Typography>
                         {this.props.post.title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                         {this.props.post.content}
-                        </Typography>
+                        </Typography> */}
                     </CardContent>
                     
                     <CardHeader
                         className="post-header"
-                        avatar={
-                        <Avatar aria-label="recipe" className="avatar"></Avatar>
-                        }
                         action={
                             this.props.user === this.props.author ? 
                             <IconButton aria-label="settings">

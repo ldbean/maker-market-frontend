@@ -1,5 +1,6 @@
 .post {
-    max-width: 375px;
+    width: 375px;
+    min-height: 320px;
     display: inline-block;
     background-color: rgb(152, 152, 152);
     margin: 5px;
@@ -15,3 +16,10 @@
     padding-top: 56.25%; /*16:9, */
     margin-top: 30;
   }
+
+.edit-form {
+    width: 375px;
+    min-height: 320px;
+    padding: 20px 10px;
+   
+}

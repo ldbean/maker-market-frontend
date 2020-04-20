@@ -16,7 +16,7 @@ const update = (post, user) => {
 
 const deletePost = (id, user) => {
   return axios.delete(`${endpoint}/${user}/posts/${id}`)
-    .then(res => res.json)
+    .then(res => res)
     .catch(err => console.log(err));
 }
 

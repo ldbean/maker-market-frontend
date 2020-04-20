@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Chip, Card, Button, ButtonGroup } from '@material-ui/core';
 import './Profile.css'
+import { API_URL } from '../../Constants'
 
 class ProfileCard extends React.Component {
 
@@ -12,7 +13,7 @@ class ProfileCard extends React.Component {
         return (
             <Card className="profile" >
                     <div className="aside details"> 
-                        <img className="profile-photo" alt={this.props.user} src="http://placekitten.com/200/200"/>
+                        <img className="profile-photo" alt={this.props.user} src={API_URL + "static/uploads" + this.props.image}/>
                         <br/>
                         <Typography className="name" variant="overline">
                             {this.props.user}
@@ -20,7 +21,7 @@ class ProfileCard extends React.Component {
                     </div>
                     <div className="aside tagline" variant="body1">
                         <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            {this.props.tagline}
                         </Typography>
                         <div className="skills">
                             <Chip size="small" label="skill" />
@@ -29,9 +30,9 @@ class ProfileCard extends React.Component {
                             <Chip size="small" label="skill" />
                         </div>
                     </div>
-                    <div className="main">
+                    {/* <div className="main">
                         <Button color="primary">Follow</Button>
-                    </div>
+                    </div> */}
                 <ButtonGroup 
                 className="controls"
                 variant="contained" 

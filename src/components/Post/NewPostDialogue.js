@@ -76,8 +76,8 @@ function NewPostDialogue (props) {
     setImg(e.target.files[0])
   }
 
-  onFormSubmit = onFormSubmit.bind(NewPostDialogue);
-  onFileChange = onFileChange.bind(NewPostDialogue);
+  // onFormSubmit = onFormSubmit.bind(NewPostDialogue);
+  // onFileChange = onFileChange.bind(NewPostDialogue);
 
   return (
     <div>

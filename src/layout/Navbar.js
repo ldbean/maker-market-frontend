@@ -11,6 +11,7 @@ function Navbar (props) {
             {(props.user) ?
                 <div>
                     <Button href="/profile">{props.user}</Button>
+                    <Button href="/discover">Discover</Button>
                     <Button onClick={props.logout}>Logout</Button>
                 </div>
                 :
